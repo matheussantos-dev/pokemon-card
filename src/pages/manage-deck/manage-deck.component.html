@@ -1,1 +1,10 @@
-<p>manage-deck works!</p>
+<div class="manage-deck-page-root">
+    <div class="manage-deck-page-header">
+        <h1>Manage Deck</h1>
+    </div>
+    <div class="manage-deck-page-body">
+        <div *ngFor="let deck of decks">
+            <div class="deck-name" (click)="goToDeckDetails(deck.name)">Deck name: {{deck.name}}</div>
+        </div>
+    </div>
+</div>

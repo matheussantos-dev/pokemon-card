@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Card, Deck } from 'src/models/deck';
+import { environment } from 'src/environments/environment.development';
+import { DeckService } from 'src/services/deck.service';
+import { ActivatedRoute } from '@angular/router';
 
 interface IResponse {
   data: Card[];
@@ -9,158 +13,79 @@ interface IResponse {
   totalCount: number;
 }
 
-interface Ability {
-  name: string;
-  text: string;
-  type: string;
-}
-
-interface Attack {
-  name: string;
-  cost: string[];
-  convertedEnergyCost: number;
-  damage: string;
-  text: string;
-}
-
-interface Set {
-  id: string;
-  name: string;
-  series: string;
-  printedTotal: number;
-  total: number;
-  legalities: { [key: string]: string };
-  ptcgoCode: string;
-  releaseDate: string;
-  updatedAt: string;
-  images: {
-      symbol: string;
-      logo: string;
-  };
-}
-
-interface WeaknessResistance {
-  type: string;
-  value: string;
-}
-
-interface TCGPlayerPrices {
-  low: number | null;
-  mid: number;
-  high: number;
-  market: number;
-  directLow: number | null;
-}
-
-interface CardMarketPrices {
-  averageSellPrice: number;
-  lowPrice: number;
-  trendPrice: number;
-  germanProLow: number;
-  suggestedPrice: number;
-  reverseHoloSell: number;
-  reverseHoloLow: number;
-  reverseHoloTrend: number;
-  lowPriceExPlus: number;
-  avg1: number;
-  avg7: number;
-  avg30: number;
-  reverseHoloAvg1: number;
-  reverseHoloAvg7: number;
-  reverseHoloAvg30: number;
-}
-
-interface TCGPlayer {
-  url: string;
-  updatedAt: string;
-  prices: {
-      holofoil: TCGPlayerPrices;
-      reverseHolofoil: TCGPlayerPrices;
-  };
-}
-
-interface CardMarket {
-  url: string;
-  updatedAt: string;
-  prices: CardMarketPrices;
-}
-
-interface Images {
-  small: string;
-  large: string;
-}
-
-interface Legalities {
-  [key: string]: string;
-}
-
-interface Card {
-  id: string;
-  name: string;
-  supertype: string;
-  subtypes: string[];
-  level?: string;
-  hp?: string;
-  types: string[];
-  evolvesFrom?: string;
-  abilities: Ability[];
-  attacks: Attack[];
-  weaknesses: WeaknessResistance[];
-  resistances: WeaknessResistance[];
-  retreatCost: string[];
-  convertedRetreatCost: number;
-  set: Set;
-  number: string;
-  artist: string;
-  rarity: string;
-  flavorText: string;
-  nationalPokedexNumbers: number[];
-  legalities: Legalities;
-  images: Images;
-  tcgplayer: TCGPlayer;
-  cardmarket: CardMarket;
-}
-
-
-
 @Component({
   selector: 'app-create-deck',
   templateUrl: './create-deck.component.html',
   styleUrls: ['./create-deck.component.scss']
 })
 export class CreateDeckComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private deckService: DeckService, private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe((params) => {
+      if (params['name']) {
+        this.title = 'Edit Deck';
+        this.newDeck = this.deckService.getDeck(params['name']) ?? this.newDeck;
+      }
+    });
+  }
   public cards: Card[] = [];
-  private newDeck: Card[] = [];
+  public newDeck: Deck = {
+    name: '',
+    cards: []
+  };
+  public title = 'Create Deck';
+  public buttonText = 'Create Deck';
+  
 
   ngOnInit(): void {
     this.getList();
   }
 
   private getList() {
-    const headers = new HttpHeaders().set('X-Api-Key', '892710cf-7ab8-42d7-be38-5b41d22f8816');
+
+    if (localStorage.getItem('cards')) {
+      const cardsString = localStorage.getItem('cards');
+      if (cardsString) {
+        this.cards = JSON.parse(cardsString);
+      }
+      return;
+    }
+
+    const headers = new HttpHeaders().set('X-Api-Key', environment.apiKey);
 
     this.http.get<IResponse>('https://api.pokemontcg.io/v2/cards', { headers })
       .subscribe((response) => {
         this.cards = response.data;
+        this.saveCards();
       });
   }
 
+  private saveCards() {
+    localStorage.setItem('cards', JSON.stringify(this.cards));
+  }
+
   isCardInDeck(card: Card) {
-    if (this.newDeck.find((item) => item.id === card.id)) this.removeCard(card);
+    if (this.newDeck.cards.find((item) => item.id === card.id)) this.removeCard(card);
     else this.addCard(card);
   }
 
-  addCard(card: Card) {
-    this.newDeck.push(card);
+  private addCard(card: Card) {
+    this.newDeck.cards.push(card);
   }
 
-  removeCard(card: Card) {
-    this.newDeck = this.newDeck.filter((item) => item.id !== card.id);
+  private removeCard(card: Card) {
+    if (this.newDeck) {
+      this.newDeck.cards = this.newDeck.cards.filter((item) => item.id !== card.id);
+    }
   }
 
-  log() {
-    console.log(this.newDeck);
+  createDeck() {
+    this.deckService.createDeck(this.newDeck);
+  }
+
+  onInputChange(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.newDeck.name = inputValue;
   }
 
 }
+

@@ -17,5 +17,4 @@ export class HomeComponent {
   goToManageDeck() {
     this.router.navigate(['/manage-deck']);
   }
-
 }

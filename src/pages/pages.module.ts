@@ -4,6 +4,7 @@ import { CreateDeckComponent } from './create-deck/create-deck.component';
 import { ManageDeckComponent } from './manage-deck/manage-deck.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { DeckDetailsComponent } from './deck-details/deck-details.component';
 
 
 
@@ -11,7 +12,8 @@ import { BrowserModule } from '@angular/platform-browser';
   declarations: [
     CreateDeckComponent,
     ManageDeckComponent,
-    HomeComponent
+    HomeComponent,
+    DeckDetailsComponent
   ],
   imports: [
     CommonModule,

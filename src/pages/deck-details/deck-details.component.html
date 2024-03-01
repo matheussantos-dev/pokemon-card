@@ -1,0 +1,15 @@
+<div class="deck-details-page">
+    <div class="deck-details-page-header">
+        <h1>Deck Details</h1>
+    </div>
+    <div class="deck-details-page-body">
+        <div class="deck-name">Deck name: {{deck.name}}</div>
+        <div class="deck-cards">
+            <h2>Cards</h2>
+            <div *ngFor="let card of deck.cards">
+                <div class="card-name">Card name: {{card.name}}</div>
+            </div>
+        </div>
+        <button (click)="navigateToCreateDeck(deck.name)">Update deck</button>
+    </div>        
+</div>

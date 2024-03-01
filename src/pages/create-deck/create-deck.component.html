@@ -1,8 +1,21 @@
 <div class="create-deck-page-root">
     <div class="create-deck-page-header">
-        <h1 (click)="log()">Create Deck</h1>
+        <h1 class="title">{{title}}</h1>
     </div>
     <div class="create-deck-page-body">
-        <div class="card cursor-pointer" *ngFor="let card of cards" (click)="isCardInDeck(card)">{{card.name}}</div>
+        <div class="new-deck">
+            <div class="deck-name">
+                <h1>Deck name:</h1>
+                <input type="text" [value]="newDeck.name" (input)="onInputChange($event)" placeholder="Deck Name">
+            </div>
+            <div class="selected-cards">
+                <h1>Selected Cards:</h1>
+                <div class="card cursor-pointer" *ngFor="let card of newDeck?.cards" (click)="isCardInDeck(card)">{{card.name}}</div>
+            </div>
+            <button (click)="createDeck()">{{buttonText}}</button>
+        </div>
+        <div class="options">
+            <div class="card cursor-pointer" *ngFor="let card of cards" (click)="isCardInDeck(card)">{{card.name}}</div>
+        </div>
     </div>
 </div>
