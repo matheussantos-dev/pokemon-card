@@ -1,4 +1,9 @@
-<div class="menu">
-    <button class="menu-button" (click)="goToCreateDeck()">Criar deck</button>
-    <button class="menu-button" (click)="goToManageDeck()">Meus decks</button>
+<div class="menu h-full w-full flex flex-col items-center">
+    <div class="flex h-1/3 w-full justify-center items-center">
+        <h1 class="text-4xl font-bold">Bem-vindo ao PokemonCard!</h1>
+    </div>
+    <div class="flex items-center justify-evenly h-2/3 w-full">
+        <button class="menu-button bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" (click)="goToCreateDeck()">Criar novo baralho</button>
+        <button class="menu-button bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" (click)="goToManageDeck()">Meus baralhos</button>
+    </div>
 </div>
