@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute } from '@angular/router';
 import { Card, Deck, DeckRestrictions } from 'src/app/models/deck';
 import { DeckService } from 'src/app/services/deck.service';
-
-interface IResponse {
-  data: Card[];
-  page: number;
-  pageSize: number;
-  count: number;
-  totalCount: number;
-}
+import { GetCardsService } from 'src/app/services/get-cards.service';
 
 @Component({
   selector: 'app-create-deck',
@@ -19,7 +10,7 @@ interface IResponse {
   styleUrls: ['./create-deck.component.scss']
 })
 export class CreateDeckComponent implements OnInit {
-  constructor(private http: HttpClient, private deckService: DeckService, private route: ActivatedRoute) { 
+  constructor(private deckService: DeckService, private route: ActivatedRoute, private getCardsService: GetCardsService) { 
     this.route.queryParams.subscribe((params) => {
       if (params['id']) {
         this.title = 'Edit Deck';
@@ -44,27 +35,9 @@ export class CreateDeckComponent implements OnInit {
   }
 
   private getList() {
-
-    if (localStorage.getItem('cards')) {
-      const cardsString = localStorage.getItem('cards');
-      if (cardsString) {
-        this.cards = JSON.parse(cardsString);
-      }
-      return;
-    }
-
-    const headers = new HttpHeaders().set('X-Api-Key', environment.apiKey);
-
-    this.http.get<IResponse>('https://api.pokemontcg.io/v2/cards', { headers })
-      .subscribe((response) => {
-        this.cards = response.data;
-        this.saveCards();
-      });
+    this.cards = this.getCardsService.getCards();
   }
 
-  private saveCards() {
-    localStorage.setItem('cards', JSON.stringify(this.cards));
-  }
 
   isCardInDeck(card: Card) {
     if (this.newDeck.cards.find((item) => item.id === card.id)) this.removeCard(card);
