@@ -111,7 +111,14 @@ interface Ability {
   }
   
   export interface Deck {
+    id?: string;
     name: string;
     cards: Card[];
+  }
+
+  export const DeckRestrictions = {
+    minNumberOfCards: 2,
+    maxNumberOfCards: 5,
+    maxCardsWithSameName: 2
   }
   

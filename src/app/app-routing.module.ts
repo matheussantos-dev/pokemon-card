@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateDeckComponent } from 'src/pages/create-deck/create-deck.component';
-import { HomeComponent } from 'src/pages/home/home.component';
-import { ManageDeckComponent } from 'src/pages/manage-deck/manage-deck.component';
-import { DeckDetailsComponent } from 'src/pages/deck-details/deck-details.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+import { DeckDetailsComponent } from 'src/app/pages/deck-details/deck-details.component';
+import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
+import { ManageDeckComponent } from './pages/manage-deck/manage-deck.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},

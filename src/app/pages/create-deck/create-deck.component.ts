@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Card, Deck } from 'src/models/deck';
 import { environment } from 'src/environments/environment.development';
-import { DeckService } from 'src/services/deck.service';
 import { ActivatedRoute } from '@angular/router';
+import { Card, Deck, DeckRestrictions } from 'src/app/models/deck';
+import { DeckService } from 'src/app/services/deck.service';
 
 interface IResponse {
   data: Card[];
@@ -21,9 +21,11 @@ interface IResponse {
 export class CreateDeckComponent implements OnInit {
   constructor(private http: HttpClient, private deckService: DeckService, private route: ActivatedRoute) { 
     this.route.queryParams.subscribe((params) => {
-      if (params['name']) {
+      if (params['id']) {
         this.title = 'Edit Deck';
-        this.newDeck = this.deckService.getDeck(params['name']) ?? this.newDeck;
+        this.buttonText = 'Edit Deck';
+        this.editMode = true;
+        this.newDeck = this.deckService.getDeck(params['id']) ?? this.newDeck;
       }
     });
   }
@@ -34,6 +36,7 @@ export class CreateDeckComponent implements OnInit {
   };
   public title = 'Create Deck';
   public buttonText = 'Create Deck';
+  editMode = false;
   
 
   ngOnInit(): void {
@@ -69,6 +72,7 @@ export class CreateDeckComponent implements OnInit {
   }
 
   private addCard(card: Card) {
+    if (this.newDeck.cards.length >= DeckRestrictions.maxNumberOfCards) return;
     this.newDeck.cards.push(card);
   }
 
@@ -78,7 +82,11 @@ export class CreateDeckComponent implements OnInit {
     }
   }
 
-  createDeck() {
+  updateOrCreateDeck() {
+    if (!this.newDeck.name || this.newDeck.cards.length < DeckRestrictions.minNumberOfCards) return;
+    if (this.editMode) {
+      return this.deckService.updateDeck(this.newDeck);
+    }
     this.deckService.createDeck(this.newDeck);
   }
 

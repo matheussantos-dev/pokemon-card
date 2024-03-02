@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Deck } from 'src/models/deck';
-import { DeckService } from 'src/services/deck.service';
+import { Deck } from 'src/app/models/deck';
+import { DeckService } from 'src/app/services/deck.service';
 
 @Component({
   selector: 'app-deck-details',
@@ -18,12 +18,13 @@ export class DeckDetailsComponent implements OnInit {
 
     ngOnInit(): void {
       this.route.queryParams.subscribe((params) => {
-        this.deck = this.deckService.getDeck(params['name']) ?? this.deck;
+        this.deck = this.deckService.getDeck(params['id']) ?? this.deck;
         console.log(this.deck);
       });
     }
 
-    navigateToCreateDeck(deckname: string) {
-      this.router.navigate(['/create-deck'], { queryParams: { name: deckname } });
+    navigateToCreateDeck(id: string | undefined) {
+      if (!id) return;
+      this.router.navigate(['/create-deck'], { queryParams: { id: id } });
     }
 }

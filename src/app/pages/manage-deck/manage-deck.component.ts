@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Deck } from 'src/models/deck';
 import { Router } from '@angular/router';
-import { DeckService } from 'src/services/deck.service';
+import { Deck } from 'src/app/models/deck';
+import { DeckService } from 'src/app/services/deck.service';
+
 
 @Component({
   selector: 'app-manage-deck',
@@ -18,8 +19,9 @@ export class ManageDeckComponent implements OnInit {
     this.decks = this.deckService.getDecks();
   }
 
-  goToDeckDetails(deckname: string) {
-    this.router.navigate(['/deck-details'], { queryParams: { name: deckname } });
+  goToDeckDetails(id: string | undefined) {
+    if (!id) return;
+    this.router.navigate(['/deck-details'], { queryParams: { id: id } });
   }
 
 }

@@ -4,7 +4,7 @@
     </div>
     <div class="manage-deck-page-body">
         <div *ngFor="let deck of decks">
-            <div class="deck-name" (click)="goToDeckDetails(deck.name)">Deck name: {{deck.name}}</div>
+            <div class="deck-name" (click)="goToDeckDetails(deck.id)">Deck name: {{deck.name}}</div>
         </div>
     </div>
 </div>
