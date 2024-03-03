@@ -21,7 +21,7 @@ export class ManageDeckComponent implements OnInit {
 
   goToDeckDetails(id: string | undefined) {
     if (!id) return;
-    this.router.navigate(['/deck-details'], { queryParams: { id: id } });
+    this.router.navigate(['/deck-details', id]);
   }
 
 }

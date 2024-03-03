@@ -1,21 +1,25 @@
-<div class="create-deck-page-root">
-    <div class="create-deck-page-header">
-        <h1 class="title">{{title}}</h1>
+<div class="create-deck-page-root h-full w-full">
+    <div class="create-deck-page-header h-1/6 flex justify-center items-center">
+        <h1 class="title text-4xl font-bold">{{title}}</h1>
     </div>
-    <div class="create-deck-page-body">
+    <div class="create-deck-page-body h-5/6">
         <div class="new-deck">
-            <div class="deck-name">
-                <h1>Deck name:</h1>
-                <input type="text" [value]="newDeck.name" (input)="onInputChange($event)" placeholder="Deck Name">
+            <div class="deck-name flex justify-center">
+                <input type="text" class="bg-transparent py-2 px-4 border border-blue-500 rounded" [value]="newDeck?.name" (input)="onInputChange($event)" placeholder="Nome do baralho">
+                <button (click)="saveDeck()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{buttonText}}</button>
             </div>
             <div class="selected-cards">
-                <h1>Selected Cards:</h1>
-                <div class="card cursor-pointer" *ngFor="let card of newDeck?.cards" (click)="isCardInDeck(card)">{{card.name}}</div>
+                <h1>Cartas selecionadas:</h1>
+                <div class="flex flex-wrap gap-4">
+                    <img *ngFor="let card of newDeck?.cards" [src]="card.images.small" alt="" class="h-40 transform transition-transform duration-500 hover:scale-110" (click)="isCardInDeck(card)">
+                </div>
             </div>
-            <button (click)="updateOrCreateDeck()">{{buttonText}}</button>
         </div>
         <div class="options">
-            <div class="card cursor-pointer" *ngFor="let card of cards" (click)="isCardInDeck(card)">{{card.name}}</div>
+            <h1>Cartas disponíveis:</h1>
+            <div class="flex flex-wrap gap-4 justify-evenly">
+                <img *ngFor="let card of cards" [src]="card.images.small" alt="" class="h-40 transform transition-transform duration-500 hover:scale-110" (click)="isCardInDeck(card)">
+            </div>
         </div>
     </div>
 </div>

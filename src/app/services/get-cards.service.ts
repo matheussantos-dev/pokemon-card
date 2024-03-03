@@ -35,8 +35,10 @@ export class GetCardsService {
 
     this.http.get<IResponse>('https://api.pokemontcg.io/v2/cards', { headers })
       .subscribe((response) => {
-        this.saveCards(response.data);
-        return response.data;
+        this.saveCards(response.data.slice(0, 30));
+        return response.data.slice(0, 30);
+  /*       this.saveCards(response.data);
+        return response.data; */
       });
   }
 }

@@ -9,22 +9,34 @@ import { DeckService } from 'src/app/services/deck.service';
   styleUrls: ['./deck-details.component.scss']
 })
 export class DeckDetailsComponent implements OnInit {
+  public deck: Deck = {
+    id: '',
+    name: '',
+    cards: [],
+    uniqueSupertypes: [],
+    uniqueTypes: []
+  };
+
   constructor(private route: ActivatedRoute, private deckService: DeckService, private router: Router) {}
 
-    public deck: Deck = {
-      name: '',
-      cards: []
-    };
-
     ngOnInit(): void {
-      this.route.queryParams.subscribe((params) => {
-        this.deck = this.deckService.getDeck(params['id']) ?? this.deck;
-        console.log(this.deck);
-      });
+      if (!this.route.snapshot.params['id'] || !this.deckService.getDeck(this.route.snapshot.params['id'])) {
+        this.router.navigate(['/home']);
+      }
+      this.deck = this.deckService.getDeck(this.route.snapshot.params['id']) ?? this.deck;
     }
 
     navigateToCreateDeck(id: string | undefined) {
-      if (!id) return;
-      this.router.navigate(['/create-deck'], { queryParams: { id: id } });
+      if (!id) {
+        return;
+      }
+      this.router.navigate(['/create-deck', id]);
+    }
+
+    removeDeck() {
+      if (this.deck.id) {
+        this.deckService.removeDeck(this.deck.id);
+        this.router.navigate(['/manage-deck']);
+      }
     }
 }

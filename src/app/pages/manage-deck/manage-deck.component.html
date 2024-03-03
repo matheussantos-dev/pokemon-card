@@ -1,10 +1,14 @@
-<div class="manage-deck-page-root">
-    <div class="manage-deck-page-header">
-        <h1>Manage Deck</h1>
+<div class="manage-deck-page-root h-full w-full">
+    <div class="manage-deck-page-header h-1/6 flex justify-center items-center">
+        <h1 class="title text-4xl font-bold">Meus baralhos</h1>
     </div>
-    <div class="manage-deck-page-body">
-        <div *ngFor="let deck of decks">
-            <div class="deck-name" (click)="goToDeckDetails(deck.id)">Deck name: {{deck.name}}</div>
+    <div class="manage-deck-page-body h-5/6 flex flex-wrap gap-4 justify-evenly">
+        <div *ngIf="decks.length === 0" class="flex justify-center items-center">
+            <h1 class="text-2xl font-bold">Você ainda não possui nenhum baralho</h1>
+        </div>
+        <div *ngFor="let deck of decks" class="flex flex-col items-center" (click)="goToDeckDetails(deck.id)">
+            <img [src]="deck.cards[0].images.small" alt="">
+            <div class="deck-name">{{deck.name}}</div>
         </div>
     </div>
 </div>

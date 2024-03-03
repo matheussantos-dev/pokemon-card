@@ -1,15 +1,26 @@
-<div class="deck-details-page">
-    <div class="deck-details-page-header">
-        <h1>Deck Details</h1>
+<div class="deck-details-page h-full w-full">
+    <div class="deck-details-page-header flex h-1/6 w-full justify-center items-center">
+        <h1 class="text-4xl font-bold">Detalhes</h1>
     </div>
-    <div class="deck-details-page-body">
-        <div class="deck-name">Deck name: {{deck.name}}</div>
-        <div class="deck-cards">
-            <h2>Cards</h2>
-            <div *ngFor="let card of deck.cards">
-                <div class="card-name">Card name: {{card.name}}</div>
+    <div class="deck-details-page-body h-5/6">
+        <div class="deck-name flex">
+            <div class="w-1/2">
+                <h1 class="text-3xl font-bold">{{deck.name}}</h1>
+            </div>
+            <div class="w-1/2 flex justify-end">
+                <button (click)="navigateToCreateDeck(deck.id)" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Alterar</button>
+                <button (click)="removeDeck()" class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Excluir</button>
             </div>
         </div>
-        <button (click)="navigateToCreateDeck(deck.id)">Update deck</button>
+        <div>
+            <p>Supertypes: {{deck.uniqueSupertypes}}</p>
+            <p>Tipos diferentes: {{deck.uniqueTypes?.length}} ({{deck.uniqueTypes}})</p>
+        </div>
+        <div class="deck-cards">
+            <h2>Cartas:</h2>
+            <div class="flex flex-wrap gap-4">
+                <img *ngFor="let card of deck.cards" [src]="card.images.small" alt="" class="h-40 transform transition-transform duration-500 hover:scale-110">
+            </div>
+        </div>
     </div>        
 </div>
