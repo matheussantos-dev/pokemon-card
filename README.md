@@ -58,6 +58,9 @@ Services - Dedicado à organização de serviços, que são responsáveis por fo
 
 Shared - Contém componentes, serviços, diretivas, pipes e outros artefatos que são compartilhados entre várias partes da aplicação.
 
+Para projetos mais complexos normalmente sigo esse modelo:
+![Folders sample](src/assets/folder-structure-sample.png)
+
 ## Contribuindo
 
 Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues para sugestões e melhorias.
