@@ -71,6 +71,17 @@ Shared - Contém componentes, serviços, diretivas, pipes e outros artefatos que
 Para projetos mais complexos normalmente sigo esse modelo:
 ![Folders sample](src/assets/folder-structure-sample.png)
 
+
+## Imagens
+
+![Home](src/assets/home-page.png)
+
+![Criar baralho](src/assets/create-deck-page.png)
+
+![Meus baralhos](src/assets/manage-deck-page.png)
+
+![Detalhes do baralho](src/assets/deck-details-page.png)
+
 ## Contribuindo
 
 Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues para sugestões e melhorias.
