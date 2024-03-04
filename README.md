@@ -49,6 +49,16 @@ Optei por demonstrar minha organização de código e estrutura de projeto, em v
 
 O projeto é bastante simples.
 
+Alguns pontos sobre minha forma de codar:
+
+1. Sempre busco adotar as melhores práticas de programação. Para isso, divido o código em pequenas funções com uma única responsabilidade.
+
+2. Tenho preferência por tipar tudo, o que facilita a manutenção e oferece uma melhor experiência com o autocomplete.
+
+3. Evito inserir lógica diretamente nas views (HTML), optando por manter toda a lógica dentro dos componentes.
+
+4. Se o método não é chamado fora do componente por padrão o defino como privado.
+
 ### Organização de Pastas
 Este projeto Angular segue uma estrutura de pasta comum para facilitar a organização e manutenção do código-fonte. 
 
