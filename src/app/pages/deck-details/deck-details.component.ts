@@ -13,7 +13,8 @@ export class DeckDetailsComponent implements OnInit {
     id: '',
     name: '',
     cards: [],
-    uniqueSupertypes: [],
+    pokemonCards: 0,
+    trainerCards: 0,
     uniqueTypes: []
   };
 

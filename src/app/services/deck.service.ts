@@ -31,9 +31,12 @@ export class DeckService {
     deck.id = Math.random().toString(36).substr(2, 9);
   }
 
-  private setSupertypes(deck: Deck) {
-    const supertypes = new Set(deck.cards.map((card) => card.supertype));
-    deck.uniqueSupertypes = Array.from(supertypes);
+  private setPokemonCards(deck: Deck) {
+    deck.pokemonCards = deck.cards.filter((card) => card.supertype === 'Pokémon').length;
+  }
+
+  private setTrainerCards(deck: Deck) {
+    deck.trainerCards = deck.cards.filter((card) => card.supertype === 'Trainer').length;
   }
 
   private setTypes(deck: Deck) {
@@ -43,7 +46,8 @@ export class DeckService {
 
   private setCalculatedValues(deck: Deck) {
     this.setDeckId(deck);
-    this.setSupertypes(deck);
+    this.setPokemonCards(deck);
+    this.setTrainerCards(deck);
     this.setTypes(deck);
   }
   

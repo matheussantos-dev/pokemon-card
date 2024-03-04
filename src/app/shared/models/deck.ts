@@ -114,7 +114,8 @@ interface Ability {
     id?: string;
     name: string;
     cards: Card[];
-    uniqueSupertypes?: string[];
+    pokemonCards?: number;
+    trainerCards?: number;
     uniqueTypes?: string[];
   }
 

@@ -9,7 +9,8 @@
             <app-button buttonText="Excluir" buttonType="danger" (clickEvent)="removeDeck()"></app-button>
         </div>
         <div>
-            <p>Supertypes: {{deck.uniqueSupertypes}}</p>
+            <p>Numero de cartas pokemon: {{deck.pokemonCards}}</p>
+            <p>Numero de cartas de treinador: {{deck.trainerCards}}</p>
             <p>Tipos diferentes: {{deck.uniqueTypes?.length}} ({{deck.uniqueTypes}})</p>
         </div>
         <div class="deck-cards">
