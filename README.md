@@ -40,7 +40,7 @@ O projeto consiste em uma aplicação que consulta a API do Pokémon TCG (Tradin
 6. Navegue até `http://localhost:4200/` em seu navegador para visualizar o projeto.
 
 ## Configuração da API
-Para acessar a API do Pokémon TCG, é necessário configurar uma chave de acesso. Esta chave é requerida para autenticar as solicitações à API. No entanto, por motivos de segurança, a chave de acesso não é incluída no repositório público. Você pode obter sua própria chave de acesso registrando-se em https://dev.pokemontcg.io/. Uma vez registrado, insira sua chave de acesso no arquivo environment.development.ts.
+Você pode usar a API do Pokémon TCG sem se registrar para uma chave de API, embora seus limites sejam muito menores do que se você tivesse uma chave de API. A chave de API que você usa para autenticar a solicitação determina seus limites de taxa. Registre-se para uma chave de API no Portal do Desenvolvedor(https://dev.pokemontcg.io/).
 
 ## Estratégia de Desenvolvimento
 Este projeto foi desenvolvido como parte de uma demonstração da minha abordagem ao desenvolvimento de software. Devo ser transparente e admitir que, devido ao meu atual emprego e participação em múltiplos processos seletivos, meu tempo tem sido escasso e tive que fazer escolhas.
