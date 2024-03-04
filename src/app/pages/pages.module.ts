@@ -5,6 +5,8 @@ import { ManageDeckComponent } from './manage-deck/manage-deck.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { DeckDetailsComponent } from './deck-details/deck-details.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 
@@ -18,7 +20,8 @@ import { DeckDetailsComponent } from './deck-details/deck-details.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

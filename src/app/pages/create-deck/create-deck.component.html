@@ -4,22 +4,25 @@
     </div>
     <div class="create-deck-page-body h-5/6">
         <div class="new-deck">
-            <div class="deck-name flex justify-center">
-                <input type="text" class="bg-transparent py-2 px-4 border border-blue-500 rounded" [value]="newDeck?.name" (input)="onInputChange($event)" placeholder="Nome do baralho">
-                <button (click)="saveDeck()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{buttonText}}</button>
+            <div class="deck-name flex justify-center gap-4">
+                <input type="text" class="bg-transparent py-2 px-4 border border-blue-500 rounded" [value]="newDeck.name" (input)="onInputChange($event)" placeholder="Nome do baralho">
+                <app-button [buttonText]="buttonText" buttonType="primary" (clickEvent)="saveDeck()"></app-button>
+                <app-button buttonText="Limpar baralho" buttonType="danger" (clickEvent)="clearDeck()"></app-button>
             </div>
             <div class="selected-cards">
                 <h1>Cartas selecionadas:</h1>
                 <div class="flex flex-wrap gap-4">
-                    <img *ngFor="let card of newDeck?.cards" [src]="card.images.small" alt="" class="h-40 transform transition-transform duration-500 hover:scale-110" (click)="isCardInDeck(card)">
+                    <app-card *ngFor="let card of newDeck?.cards" [card]="card" (clickEvent)="isCardInDeck(card)"></app-card>
                 </div>
             </div>
         </div>
-        <div class="options">
+        <div class="options" *ngIf="!loadingCards">
             <h1>Cartas disponíveis:</h1>
             <div class="flex flex-wrap gap-4 justify-evenly">
-                <img *ngFor="let card of cards" [src]="card.images.small" alt="" class="h-40 transform transition-transform duration-500 hover:scale-110" (click)="isCardInDeck(card)">
+                <app-card *ngFor="let card of cards" [card]="card" (clickEvent)="isCardInDeck(card)"></app-card>
             </div>
         </div>
+        <div class="loading" *ngIf="loadingCards">
+            <h1>Carregando cartas...</h1>
     </div>
 </div>

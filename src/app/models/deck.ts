@@ -121,6 +121,6 @@ interface Ability {
   export const DeckRestrictions = {
     minNumberOfCards: 2,
     maxNumberOfCards: 15,
-    maxCardsWithSameName: 10
+    maxCardsWithSameName: 2
   }
   

@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold">Bem-vindo ao PokemonCard!</h1>
     </div>
     <div class="flex items-center justify-evenly h-2/3 w-full">
-        <button class="menu-button bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" (click)="goToCreateDeck()">Criar novo baralho</button>
-        <button class="menu-button bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" (click)="goToManageDeck()">Meus baralhos</button>
+        <app-button buttonText="Criar novo baralho" buttonType="primary" (clickEvent)="goToCreateDeck()"></app-button>
+        <app-button buttonText="Meus baralhos" buttonType="primary" (clickEvent)="goToManageDeck()"></app-button>
     </div>
 </div>

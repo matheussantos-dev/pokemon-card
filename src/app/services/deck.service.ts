@@ -60,7 +60,6 @@ export class DeckService {
     return this.decks.find((deck) => deck.id === id);
   }
 
-
   public removeDeck(id: string) {
     const index = this.decks.findIndex((deck) => deck.id === id);
     if (index === -1) {
