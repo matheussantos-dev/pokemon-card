@@ -10,7 +10,7 @@ export class DeckService {
   constructor() { }
   public decks: Deck[] = [];
 
-  private isThereMoreThanFourOfTheSameCard(deck: Deck) {
+  private exceedsCardNameLimit(deck: Deck) {
     const cardNames = deck.cards.map((card) => card.name);
     const uniqueCardNames = new Set(cardNames);
     for (const name of uniqueCardNames) {
@@ -23,7 +23,7 @@ export class DeckService {
   private isDeckValid(deck: Deck) {
     const hasName = deck.name;
     const hasValidNumberOfCards = deck.cards.length >= DeckRestrictions.minNumberOfCards && deck.cards.length <= DeckRestrictions.maxNumberOfCards;
-    const hasUniqueCards = !this.isThereMoreThanFourOfTheSameCard(deck);
+    const hasUniqueCards = !this.exceedsCardNameLimit(deck);
     return hasName && hasValidNumberOfCards && hasUniqueCards;
   }
 
