@@ -12,7 +12,10 @@ export class GetCardsService {
   constructor(private http: HttpClient) { }
 
   public getCards() {
-    const headers = new HttpHeaders().set('X-Api-Key', environment.apiKey);
+    let headers = new HttpHeaders();
+    if (environment.apiKey) {
+      headers = headers.set('X-Api-Key', environment.apiKey);
+    }
     return this.http.get<IGetCardsResponse>('https://api.pokemontcg.io/v2/cards', { headers });
   }
 }

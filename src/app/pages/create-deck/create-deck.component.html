@@ -18,7 +18,7 @@
         </div>
         <div class="options" *ngIf="!loadingCards">
             <h1>Cartas disponíveis:</h1>
-            <div class="flex flex-wrap gap-4 justify-evenly">
+            <div class="flex flex-wrap gap-4">
                 <app-card *ngFor="let card of cards" [card]="card" (clickEvent)="isCardInDeck(card)"></app-card>
             </div>
         </div>
