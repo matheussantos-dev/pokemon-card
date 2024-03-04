@@ -39,7 +39,6 @@ export class CreateDeckComponent implements OnInit {
   }
 
   private addCardToDeck(card: Card) {
-    if (!this.newDeck) return;
     if (this.newDeck.cards.length >= DeckRestrictions.maxNumberOfCards) {
       alert('Número máximo de cartas atingido');
       return;
@@ -86,11 +85,6 @@ export class CreateDeckComponent implements OnInit {
     };
     const result = this.editMode ? this.deckService.updateDeck(this.newDeck) : this.deckService.createDeck(this.newDeck);
     this.handleServiceReturn(result);
-  }
-
-  onInputChange(event: Event) {
-    const inputValue = (event.target as HTMLInputElement).value;
-    this.newDeck.name = inputValue;
   }
 }
 

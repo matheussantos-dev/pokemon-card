@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { DeckDetailsComponent } from './deck-details/deck-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     BrowserModule,
-    SharedModule
+    SharedModule,
+    FormsModule 
   ]
 })
 export class PagesModule { }

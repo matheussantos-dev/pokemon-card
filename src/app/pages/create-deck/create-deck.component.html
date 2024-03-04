@@ -5,7 +5,7 @@
     <div class="create-deck-page-body h-5/6">
         <div class="new-deck">
             <div class="deck-name flex justify-center gap-4">
-                <input type="text" class="bg-transparent py-2 px-4 border border-blue-500 rounded" [value]="newDeck.name" (input)="onInputChange($event)" placeholder="Nome do baralho">
+                <input [(ngModel)]="newDeck.name" type="text" class="bg-transparent py-2 px-4 border border-blue-500 rounded" placeholder="Nome do baralho">
                 <app-button [buttonText]="buttonText" buttonType="primary" (clickEvent)="saveDeck()"></app-button>
                 <app-button buttonText="Limpar baralho" buttonType="danger" (clickEvent)="clearDeck()"></app-button>
             </div>
