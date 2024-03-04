@@ -22,7 +22,7 @@
                 <app-card *ngFor="let card of cards" [card]="card" (clickEvent)="isCardInDeck(card)"></app-card>
             </div>
         </div>
-        <div class="loading" *ngIf="loadingCards">
-            <h1>Carregando cartas...</h1>
+        <div class="loading flex justify-center items-center" *ngIf="loadingCards">
+            <h1 class="text-4xl font-bold">Carregando cartas...</h1>
     </div>
 </div>
