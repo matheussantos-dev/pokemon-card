@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Deck, DeckRestrictions } from '../models/deck';
+import { Deck, DeckRestrictions } from '../shared/models/deck';
 
 
 @Injectable({

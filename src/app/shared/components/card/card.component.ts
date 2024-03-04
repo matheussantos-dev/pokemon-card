@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Card } from 'src/app/models/deck';
+import { Card } from 'src/app/shared/models/deck';
 
 @Component({
   selector: 'app-card',

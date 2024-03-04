@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Deck } from 'src/app/models/deck';
+import { Deck } from 'src/app/shared/models/deck';
 import { DeckService } from 'src/app/services/deck.service';
 
 @Component({

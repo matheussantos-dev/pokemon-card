@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Card, Deck, DeckRestrictions } from 'src/app/models/deck';
+import { Card, Deck, DeckRestrictions } from 'src/app/shared/models/deck';
 import { DeckService } from 'src/app/services/deck.service';
 import { GetCardsService } from 'src/app/services/get-cards.service';
 import { Router } from '@angular/router';
-
-export interface IResponse {
-  data: Card[];
-  page: number;
-  pageSize: number;
-  count: number;
-  totalCount: number;
-}
+import { IGetCardsResponse } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-create-deck',
@@ -39,7 +32,7 @@ export class CreateDeckComponent implements OnInit {
 
   private getList() {
     this.loadingCards = true;
-    this.getCardsService.getCards().subscribe((response: IResponse) => {
+    this.getCardsService.getCards().subscribe((response: IGetCardsResponse) => {
       this.cards = response.data;
       this.loadingCards = false;
     });
