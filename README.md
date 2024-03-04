@@ -43,7 +43,20 @@ O projeto consiste em uma aplicação que consulta a API do Pokémon TCG (Tradin
 Para acessar a API do Pokémon TCG, é necessário configurar uma chave de acesso. Esta chave é requerida para autenticar as solicitações à API. No entanto, por motivos de segurança, a chave de acesso não é incluída no repositório público. Você pode obter sua própria chave de acesso registrando-se em https://dev.pokemontcg.io/. Uma vez registrado, insira sua chave de acesso no arquivo environment.development.ts.
 
 ## Estratégia de Desenvolvimento
-Devido a restrições de tempo, minha abordagem de desenvolvimento priorizou a demonstração de práticas sólidas de codificação e organização de projeto em detrimento do aspecto visual. O foco foi na implementação de padrões de codificação limpa e na arquitetura robusta da aplicação, garantindo assim uma base sólida para futuras iterações e melhorias.
+Este projeto foi desenvolvido como parte de uma demonstração da minha abordagem ao desenvolvimento de software. Devo ser transparente e admitir que, devido ao meu atual emprego e participação em múltiplos processos seletivos, meu tempo tem sido escasso e tive que fazer escolhas.
+
+Optei por demonstrar minha organização de código e estrutura de projeto, em vez de priorizar a interface do usuário. Isso não implica que eu não aprecie ou não tenha habilidades com tecnologias como GRID, flexbox e animações - na verdade, eu gosto bastante!
+
+O projeto é bastante simples.
+
+### Organização de Pastas
+Este projeto Angular segue uma estrutura de pasta comum para facilitar a organização e manutenção do código-fonte. 
+
+Pages - Contém todas as páginas relacionadas a um determinado domínio de negócios. No entanto, devido à simplicidade deste projeto, as páginas estão diretamente localizadas na pasta "app".
+
+Services - Dedicado à organização de serviços, que são responsáveis por fornecer funcionalidades específicas para diferentes partes da aplicação.
+
+Shared - Contém componentes, serviços, diretivas, pipes e outros artefatos que são compartilhados entre várias partes da aplicação.
 
 ## Contribuindo
 
